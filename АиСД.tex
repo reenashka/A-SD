@@ -1,0 +1,72 @@
+\documentclass{article}
+
+\usepackage[russian]{babel}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Эффективная длинная арифметика}
+\author{Щербак Ирина Сергеевна }
+
+\begin{document}
+\maketitle
+
+
+\section{Введение}
+\subsection{Информация}
+Длинная арифметика - набор алгоритмов для поразрядной работы с числами произвольной длины. Она применяется как с относительно небольшими числами, превышающими ограничения типа long long в несколько раз, так и с по-настоящему большими числами (чаще всего до 10100000.). Для работы с “длинными” числами их разбивают на разряды.
+Многие языки (Java, Ruby, Python) имеют встроенную поддержку длинной арифметики, что в разы может сократить время написания программы.
+\subsection{История}
+Первый бизнес-компьютер IBM 702 (цифровой компьютер на базе лапвовых компьютеров первого поколения) в середине 1950-х годов полностью реализовывал целочисленную арифметику в аппаратных срествах для строк цифр любой длинны от 1 до 511 цифр. Самая раняя широко распрастранненая программная реализация арифметики произвольной точности была реализована в Maclisp. 
+Рання широко распространненная реализация была доступна через IMB 1620 (1959-1970 годов). Эта машина была десятичной, которая использовала дискретные транзисторы, но имела аппаратное обеспечение (которое использовало таблицы поиска) для выполнения целочисленной арифметики над строками цифр длиной от двух до любой доступной памяти. Для арифметики с плавающей точкой мантиса была ограничена сотней цифр или меньше, а показатель степени был ограничен только двумя цифрами. 
+\subsection{Перспективы использования}
+
+\section{Описание}
+\subsection{Структура данных}
+На вход подаются два длинных числа. Далее, взависимости от знака, с ним выполняются разничные операции (сложение, вычитания, умножение, деление, возведение в степень).
+Разберем случай, когда мы складываем два числа. Процесс будет аналогичен способу сложения в столбик.
+
+\section{Формальная постановка задачи}
+
+\section{Реализация}
+\subsection{Тесты}
+\subsection{Производительность}
+\section{Заключение}
+
+
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+\\
+\url{https://brestprog.by/topics/longarithmetics/}\\
+\url{http://e-maxx.ru/algo/big_integer}\\
+\url{http://comp-science.narod.ru/DL-AR/okulov.htm}\\
+\url{https://habr.com/ru/post/172285/}\\
+\url{http://cppalgo.blogspot.com/2010/05/blog-post.html}\\
+\url{http://cppalgo.blogspot.com/2010/08/div-mod_29.html}\\
+\url{https://infourok.ru/dlinnaya-arifmetika-na-c-opisanie-modeli-realizaciya-zadachi-1959820.html}\\
+\url{http://cppstudio.com/en/post/5036/}\\
+\url{https://readera.org/using-long-arithmetic-in-c-programming-language-140238838}\\
+\url{https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic}\\
+\url{http://zonakoda.ru/dlinnaya-arifmetika-vsyo-o-biblioteke-big_int.html}\\
+\url{https://inf.1sept.ru/2000/1/art/okul1.htm}\\
+\url{https://yougame.biz/threads/199672/}\\
+\url{https://forum.antichat.com/threads/50392/}\\
+\url{https://present5.com/arifmetika-mnogokratnoj-tochnosti-dlinnaya-arifmetika-biryukov-s-v/}\\
+\url{https://itnan.ru/post.php?c=1&p=578718}\\
+\url{https://revolution.allbest.ru/programming/00680612_0.html}\\
+\url{https://www.sites.google.com/site/algoritmyprogramm/c/dlinnye-cisla-v-razrabotke}\\
+\url{https://www.geeksforgeeks.org/longest-arithmetic-progression-dp-35/}\\
+\url{https://www.sanfoundry.com/dynamic-programming-solutions-longest-arithmetic-progression-problem/}\\
+\url{https://www.codingninjas.com/codestudio/library/longest-arithmetic-progression}\\
+\url{https://github.774.gs/AngelicosPhosphoros/LongArithmeticsCPP}\\
+\url{https://software-testing.com/topic/597880/long-arithmetic-c/2}\\
+\url{http://bb3x.ru/blog/dlinnaya-arifmetika-ot-microsoft/}\\
+\url{https://progaem.forum2x2.ru/t93-topic}\\
+\url{https://fenlin.ru/video/i1uHzncfVr0}\\
+\url{https://bstudy.net/916247/tehnika/realizatsiya_vychisleniy_dlinnoy_arifmetike_yazykah_programmirovaniya_fortran}\\
+
+\end{document}

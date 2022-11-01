@@ -1,18 +1,56 @@
-\documentclass{article}
-
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % для того чтобы задать нестандартный 14-ый размер шрифта
+\usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-
-\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-
-\title{Эффективная длинная арифметика}
-\author{Щербак Ирина Сергеевна }
-
-\begin{document}
-\maketitle
+\usepackage{setspace,amsmath}
+\usepackage[left=20mm, top=15mm, right=15mm, bottom=15mm, nohead, footskip=10mm]{geometry} 
+ 
+\begin{document} 
+ 
+\begin{center}
+\hfill \break
+\large{МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ}\\
+\footnotesize{Федеральное государственное автономное образовательное учреждение высшего образования}\\ 
+\footnotesize{«Дальневосточный федеральный университет»}\\
+\small{\textbf{(ДВФУ)}}\\
+\hfill \break
+\normalsize{ИНСТИТУТ МАТЕМАТИКИ И КОМПЬЮТЕРНЫХ ТЕХНОЛОГИЙ}\\
+ \hfill \break
+\normalsize{Департамент математического и компьютерного моделирования}\\
+\hfill\break
+\hfill \break
+\hfill \break
+\hfill \break
+\large{Эффективная длинная арифметика}\\
+\hfill \break
+\hfill \break
+\hfill \break
+\normalsize{Доклад\\
+\hfill \break
+Направление подготовки 09.03.03 Прикладная информатика\\
+\hfill \break
+Профиль «Приладная информатика в компьютерном дизайне»}\\
+\hfill \break
+\hfill \break
+\end{center}
+ 
+\normalsize{} \hfill \break
+\hfill \break
+ 
+\normalsize{ 
+\begin{tabular}{cccc}
+Обучающийся & \underline{\hspace{3cm}} & &И.С. Щербак \\\\
+Руководитель & \underline{\hspace{3cm}}& доцент ИМКТ &А.С. Кленин \\\\
+\end{tabular}
+}\\
+\hfill \break
+\hfill \break
+\begin{center} Владивосток 2022 \end{center}
+\thispagestyle{empty} 
+ 
+\newpage
+     
+    \tableofcontents 
 \newpage
 
 \section{Введение}
@@ -22,7 +60,6 @@
 \subsection{История}
 Первый бизнес-компьютер IBM 702 (цифровой компьютер на базе лапвовых компьютеров первого поколения) в середине 1950-х годов полностью реализовывал целочисленную арифметику в аппаратных срествах для строк цифр любой длинны от 1 до 511 цифр. Самая раняя широко распрастранненая программная реализация арифметики произвольной точности была реализована в Maclisp. 
 Рання широко распространненная реализация была доступна через IMB 1620 (1959-1970 годов). Эта машина была десятичной, которая использовала дискретные транзисторы, но имела аппаратное обеспечение (которое использовало таблицы поиска) для выполнения целочисленной арифметики над строками цифр длиной от двух до любой доступной памяти. Для арифметики с плавающей точкой мантиса была ограничена сотней цифр или меньше, а показатель степени был ограничен только двумя цифрами. 
-\subsection{Перспективы использования}
 \newpage
 
 \section{Описание}
@@ -45,6 +82,7 @@
 \bibliographystyle{alpha}
 \bibliography{sample}
 
+\begin{flushleft}
 \\
 \url{https://brestprog.by/topics/longarithmetics/}\\
 \url{http://e-maxx.ru/algo/big_integer}\\
@@ -72,6 +110,7 @@
 \url{http://bb3x.ru/blog/dlinnaya-arifmetika-ot-microsoft/}\\
 \url{https://progaem.forum2x2.ru/t93-topic}\\
 \url{https://fenlin.ru/video/i1uHzncfVr0}\\
-\url{https://bstudy.net/916247/tehnika/realizatsiya_vychisleniy_dlinnoy_arifmetike_yazykah_programmirovaniya_fortran}\\
+\url{https://pro-prof.com/forums/topic/long-integer-arithmetic-cplusplus}\\
+\end{flushleft}
 
 \end{document}

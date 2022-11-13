@@ -58,6 +58,7 @@ public:
 
   friend BigInt operator + (const BigInt &a, const BigInt &b) ;
   friend BigInt operator - (const BigInt &a, const BigInt &b) ;
+  friend BigInt operator * (const BigInt &a, const BigInt &b) ;
 
 private:
   int base = 10;
@@ -149,15 +150,48 @@ BigInt operator - (const BigInt &a, const BigInt &b) {
   BigInt d(result);
   return d;
 }
+
+//УМНОЖЕНИЕ
+BigInt operator * (const BigInt &a, const BigInt &b) {
+    
+  vector<int> result(a.number.size() * b.number.size(), 0);
+  
+  for(int i = 0; i < a.number.size(); i++){
+    int carry = 0;
+
+    for(int j = 0; j < b.number.size(); j++){
+      int cur = result[i + j] + a.number[i] * b.number[j] + carry;
+      carry = cur / a.base;
+      result[i+j] = cur % a.base;
+    }
+
+    int cur = b.number.size();
+    while(carry){
+      result[i+cur] = carry % a.base;
+      cur++;
+      carry /= a.base;
+    }
+  }
+
+  while(!result.back() && result.size() > 1){
+    result.pop_back();
+  }
+  
+  BigInt e(result);
+  return e;
+}
+
 int main(){
   
   BigInt a("1256");
   BigInt b(354);
   
-  BigInt c = a + b;
-  BigInt d = a - b;
-  c.write();
-  d.write();
+  //BigInt c = a + b;
+  //BigInt d = a - b;
+  BigInt e = a * b;
+  //c.write();
+  //d.write();
+  e.write();
   return 0;
   
 }

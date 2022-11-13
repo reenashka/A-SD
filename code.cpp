@@ -4,66 +4,101 @@
 #include <iomanip>
 #include <sstream>
 #include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-class big_integer {
+struct BigInt{
+public:
+  
+  //пустой конструктор 
+  BigInt(){
+    number.resize(1);
+    number[0] = 0;
+  }
 
-	static const int BASE = 1000000000;
+  // инициализация 
+  BigInt(string s){
+    // аналогично
+    // for (int i = 0; i < s.lenght(); i++){
+    //  digit = s[i];
+    //}
+    for(auto digit : s){
+      number.push_back(digit - '0');
+    }
+    reverse(number.begin(), number.end());
+  }
 
-  big_integer(string str);
-  void _remove_leading_zeros();
+  BigInt(vector<int> number){
+    this->number = number;
+  }
 
-	vector<int> _digits;
+  //функция для вывода числа в обратном порядке
+  void write_reversed() const {
+    for(auto digit : number){
+      cout << digit;
+    }
+    cout << "\n";
+  }
 
-	bool _is_negative;
+  //функция для вывода числа
+  void write() const {
+    for(int i = number.size() - 1; i >= 0; i--){
+      cout << number[i];
+    }
+    cout << "\n";
+  }
+
+  BigInt operator + (const BigInt &a){
+    
+    vector<int> result;
+    int carry = 0;
+    
+    for(int i = 0; i < min(a.number.size(), this->number.size()); i++){
+      int cur_sum = carry + a.number[i] + this->number[i];
+      result.push_back(cur_sum % 10);
+      carry = cur_sum / 10;
+   
+    }
+    
+    for(int i = min(a.number.size(), this->number.size()); i < max(a.number.size(), this->number.size()); i++){
+      
+      if(a.number.size() > this->number.size()){
+        int cur_sum = carry + a.number[i] + this->number[i];
+        result.push_back(cur_sum % 10);
+        carry = cur_sum / 10;
+      
+      }
+      
+      else{
+        int cur_sum = carry + this->number[i];
+        result.push_back(cur_sum % 10);
+        carry = cur_sum / 10;
+      
+      }
+    
+    }
+
+    if(carry != 0){
+      result.push_back(carry);
+    }
+    
+    BigInt c(result);
+    return c;
+    
+  }
+
+private:
+  vector<int> number;
 };
 
-//удаление нулей
-void big_integer::_remove_leading_zeros(){
-
-  while(this->_digits.size() > 1 && this->_digits.size() == 0){
-    this->_digits.pop_back();
-  }
+int main(){
   
-  if (this->_digits.size() == 1 && this->_digits[0] == 0) {
-    this->_is_negative = false;
-  }
+  BigInt a("1234567890987654321");
+  BigInt b("55555");
+  
+  BigInt c = a + b;
+  c.write();
+  return 0;
   
 }
-
-//создание числа
-big_integer::big_integer(string str) {
-
-  if(str.size() == 0){
-    this->_is_negative = false;
-  }
-
-  else{
-    
-    if(str[0] == '-'){
-      str = str.substr(1);
-      this->_is_negative = true;
-    }
-
-    else{
-      this->_is_negative = false;
-    }
-
-    for(long long i = str.size(); i > 0; i -= 9){
-      
-      if (i < 9){
-        this->_digits.push_back(atoi(str.substr(0, i).c_str())); //переводим строку в число и отсылаем в вектор
-      }
-
-      else{
-        this->_digits.push_back(atoi(str.substr(i - 9, 9).c_str()));
-      }
-
-       this->_remove_leading_zeros(); //удаление нулей
-      
-    }
-  }
-  
-}
-

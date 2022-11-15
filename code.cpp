@@ -1,4 +1,5 @@
 #include <vector>
+#include <fstream>
 #include <string>
 #include <ostream>
 #include <iomanip>
@@ -7,6 +8,9 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
+ifstream fin("1.in");
+ofstream fout("1.out");
 
 struct BigInt{
 public:
@@ -19,10 +23,7 @@ public:
 
   // инициализация 
   BigInt(string s){
-    // аналогично
-    // for (int i = 0; i < s.lenght(); i++){
-    //  digit = s[i];
-    //}
+
     for(auto digit : s){
       number.push_back(digit - '0');
     }
@@ -50,15 +51,26 @@ public:
 
   //функция для вывода числа
   void write() const {
+
     for(int i = number.size() - 1; i >= 0; i--){
-      cout << number[i];
+      fout << number[i];
     }
+    //fout << "\n";
+    fout.close();
+  }
+
+  //функция для вывода длины числа
+  void lenght_num() const{
+    int len = number.size();
+    cout << len;
     cout << "\n";
   }
 
   friend BigInt operator + (const BigInt &a, const BigInt &b) ;
   friend BigInt operator - (const BigInt &a, const BigInt &b) ;
   friend BigInt operator * (const BigInt &a, const BigInt &b) ;
+  friend BigInt operator / (const BigInt &a, const BigInt &b) ;
+  friend bool operator <= (const BigInt &a, const BigInt &b) ;
 
 private:
   int base = 10;
@@ -99,7 +111,7 @@ BigInt operator + (const BigInt &a, const BigInt &b) {
   if(carry != 0){
     result.push_back(carry);
   }
-  
+
   BigInt c(result);
   return c;
 }
@@ -181,17 +193,84 @@ BigInt operator * (const BigInt &a, const BigInt &b) {
   return e;
 }
 
+//ДЕЛЕНИЕ
+BigInt operator / (const BigInt &a, const BigInt &b) {
+    
+  vector<int> result(a.number.size() - b.number.size() + 1, 0);
+  BigInt c(result);
+  
+  for(int i = result.size() - 1; i >= 0; i--){
+    
+    while(b * c <= a){
+      c.number[i]++;
+    }
+    c.number[i]--;
+  }
+  
+  while(c.number.size() > 1 && !c.number.back()){
+    c.number.pop_back();
+  }
+  
+  return c;
+}
+
+//СРАВНЕНИЕ
+bool operator <= (const BigInt &a, const BigInt &b) {
+
+  if(a.number.size() < b.number.size()){
+    return true;
+  }
+
+  else if(a.number.size() > b.number.size()){
+    return false;
+  }
+
+  else{
+    for(int i = a.number.size() - 1; i >= 0; i++){
+
+      if(a.number[i] > b.number[i]){
+        return false;
+      }
+
+      if(a.number[i] < b.number[i]){
+        return false;
+      }
+      
+    }
+    return true;
+  }
+  
+}
+
 int main(){
+
+  ifstream fans("1.ans");
   
-  BigInt a("1256");
-  BigInt b(354);
+  string number1, number2, operand, number_ans;
+  fin >> number1 >> operand >> number2;
+  fans >> number_ans;
+
+  BigInt a(number1), b(number2);
+
+  BigInt res = 0;
+  if(operand == "+") { 
+    res = a + b;
+  }
+
+  res.write();
+
+  ifstream finres("1.out");
   
-  //BigInt c = a + b;
-  //BigInt d = a - b;
-  BigInt e = a * b;
-  //c.write();
-  //d.write();
-  e.write();
+  string number_out;
+  finres >> number_out;
+
+  if(number_out == number_ans){
+    cout << "Ok";
+  }
+  else{
+    cout << "WA";
+  }
+  
   return 0;
   
 }
